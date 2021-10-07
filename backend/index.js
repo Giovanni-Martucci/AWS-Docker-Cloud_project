@@ -15,19 +15,19 @@ app.use(express.json());                           //sostituito a bodyparser
 
 
 const options_temperature = {
-  hostname: '172.31.7.75', // or 0.0.0.0 - temp
+  hostname: '10.3.0.187', // or 0.0.0.0 - temp
   port: 4000,
   path: '/temperature',
   method: 'GET'
 }
 const options_rain = {
-  hostname: '172.31.7.75', // or 0.0.0.0 - umid
+  hostname: '10.3.0.187', // or 0.0.0.0 - 
   port: 5000,
   path: '/rain',
   method: 'GET'
 }
 const options_sunny = {
-  hostname: '172.31.7.75', // or 0.0.0.0 //nomedelservizio - ph or webapp_ph
+  hostname: '10.3.0.187', // or 0.0.0.0 //nomedelservizio - 
   port: 8000,
   path: '/sunny',
   method: 'GET'

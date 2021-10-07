@@ -1,0 +1,95 @@
+version: "3" 
+networks: # definisce, per i container, la rete webnet con eventuali parametri
+  webnet: # qui parametri di default (rete overlay, load-balanced)
+services:
+  temp: # al servizio verrà dato il nome dell'immagine con questo suffisso: get-started_web
+    image: giomar19/temperature:cloud  # immagine eseguita dai container/repliche
+           # user/name:tag individuano l’immagine desiderata
+    deploy:        # specifiche per il deployment delle repliche
+      replicas: 3  # n. di repliche
+      resources:
+        limits:        # limiti di uso delle risorse che nessuna replica  può superare
+          cpus: "0.1"  # NB: 0.1=10% della CPU (su tutti i core)
+          memory: 50M
+      restart_policy:  # immediately restart any      
+        condition:     # container, should 
+          on-failure   # it fail
+    ports:
+      - "4000:4000"      # mappa port host:container (- introduce elemento di una lista)
+    networks:
+      - webnet
+  visualizer:
+    image: dockersamples/visualizer:stable  # visualizer è disponibile dall’hub Docker pubblico
+    ports:                                  # visualizza uno schema dello swarm e, per questo,
+      - "8080:8080"                         # deve girare sul manager (v. sotto deploy:placement:constraints)
+    volumes:                                          # la chiave volumes mappa la 
+      - "/var/run/docker.sock:/var/run/docker.sock"   # socket docker del visualizer su quella dell’host
+    deploy:
+      placement:
+        constraints: [node.role == manager]    # visualizer deve girare sul manager per poter 
+    networks:                                  # visualizzare una rappresentazione grafica dello swarm 
+      - webnet
+  rain: # al servizio verrà dato il nome dell'immagine con questo suffisso: get-started_web
+    image: giomar19/rain:cloud  # immagine eseguita dai container/repliche
+           # user/name:tag individuano l’immagine desiderata
+    deploy:        # specifiche per il deployment delle repliche
+      replicas: 3  # n. di repliche
+      resources:
+        limits:        # limiti di uso delle risorse che nessuna replica  può superare
+          cpus: "0.1"  # NB: 0.1=10% della CPU (su tutti i core)
+          memory: 50M
+      restart_policy:  # immediately restart any      
+        condition:     # container, should 
+          on-failure   # it fail
+    ports:
+      - "5000:5000"      # mappa port host:container (- introduce elemento di una lista)
+    networks:
+      - webnet  
+  sunny: # al servizio verrà dato il nome dell'immagine con questo suffisso: get-started_web
+    image: giomar19/sunny:cloud  # immagine eseguita dai container/repliche
+           # user/name:tag individuano l’immagine desiderata
+    deploy:        # specifiche per il deployment delle repliche
+      replicas: 3  # n. di repliche
+      resources:
+        limits:        # limiti di uso delle risorse che nessuna replica  può superare
+          cpus: "0.1"  # NB: 0.1=10% della CPU (su tutti i core)
+          memory: 50M
+      restart_policy:  # immediately restart any      
+        condition:     # container, should 
+          on-failure   # it fail
+    ports:
+      - "8000:8000"      # mappa port host:container (- introduce elemento di una lista)
+    networks:
+      - webnet 
+  back: # al servizio verrà dato il nome dell'immagine con questo suffisso: get$
+    image: giomar19/backend:cloud  # immagine eseguita dai container/replic$
+           # user/name:tag individuano l’immagine desiderata
+    deploy:        # specifiche per il deployment delle repliche
+      replicas: 3  # n. di repliche
+      resources:
+        limits:        # limiti di uso delle risorse che nessuna replica  può s$
+          cpus: "0.1"  # NB: 0.1=10% della CPU (su tutti i core)
+          memory: 50M
+      restart_policy:  # immediately restart any
+        condition:     # container, should
+          on-failure   # it fail
+    ports:
+      - "3000:3000"	 # mappa port host:container (- introduce elemento di u$
+    networks:
+      - webnet
+  front: # al servizio verrà dato il nome dell'immagine con questo suffisso: get$
+    image: giomar19/frontend:cloud  # immagine eseguita dai container/replic$
+           # user/name:tag individuano l’immagine desiderata
+    deploy:        # specifiche per il deployment delle repliche
+      replicas: 3  # n. di repliche
+      resources:
+        limits:        # limiti di uso delle risorse che nessuna replica  può s$
+          cpus: "0.1"  # NB: 0.1=10% della CPU (su tutti i core)
+          memory: 50M
+      restart_policy:  # immediately restart any
+        condition:     # container, should
+          on-failure   # it fail
+    ports:
+      - "80:80"	 # mappa port host:container (- introduce elemento di u$
+    networks:
+      - webnet
