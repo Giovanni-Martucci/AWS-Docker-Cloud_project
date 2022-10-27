@@ -16,32 +16,42 @@
 2) Install Angular;
 3) Install RabbitMQ from homebrew;
 
-4) New terminal: rabbitmq-server;
+4) New terminal: ``` rabbitmq-server ```
 5) New terminal:
-        - cd frontend
-        - node index.js;
+        ```
+         - cd frontend
+         - node index.js
+        ```
 6) New terminal:
+        ```
         - cd backend
-        - node index.js;
+        - node index.js
+        ```
 7) New terminal:
+        ```
         - cd microservice_food_advice
-        - node index.js;
+        - node index.js
+        ```
 8) New terminal:
+        ```
         - cd microservice_wheater
-        - node index.js;
+        - node index.js 
+        ```
 9) New terminal:
+        ```
         - cd microservice_rand_number
-        - node index.js;
+        - node index.js 
+        ```
 
 10) Go to http://localhost:4200 ;
 
 
 ## USAGE WITH DOCKER SWARM
 
-1) New terminal: docker swarm init;
+1) New terminal: ``` docker swarm init ```
 2) [OPTIONAL] New machines (node worker) terminal: insert code provided by master;
-3) Terminal master: docker stack deploy -c docker-compose.yml projectisd;
-4) Go to localhost;
+3) Terminal master: ``` docker stack deploy -c docker-compose.yml projectisd ```
+4) Go to http://localhost 
 
 
 
