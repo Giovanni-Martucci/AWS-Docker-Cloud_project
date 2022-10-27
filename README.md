@@ -55,7 +55,7 @@
 
 
 
-GO TO http://localhost:15672 for RabbitMQ panel (user:guest;password:guest);
-GO TO http://localhost:8080 for displaying the containers distributed in the various nodes of the swarm;
+** GO TO http://localhost:15672 for RabbitMQ panel (user:guest;password:guest);
+** GO TO http://localhost:8080 for displaying the containers distributed in the various nodes of the swarm;
 
 
